@@ -1,10 +1,7 @@
 package fr.uphf.recettes.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -12,6 +9,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MacroNutriment {
     @Id
     @GeneratedValue
@@ -29,7 +29,6 @@ public class MacroNutriment {
     @Column
     private Integer lipides;
 
-    @OneToOne
-    @ToString.Exclude
+    @OneToOne(cascade = CascadeType.ALL)
     private Recette recette;
 }

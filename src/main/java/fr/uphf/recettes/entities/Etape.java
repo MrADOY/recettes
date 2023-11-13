@@ -1,10 +1,7 @@
 package fr.uphf.recettes.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -12,6 +9,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Etape {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

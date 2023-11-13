@@ -2,9 +2,7 @@ package fr.uphf.recettes.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -15,6 +13,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Recette {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -36,10 +37,10 @@ public class Recette {
     @OneToMany(mappedBy = "recette")
     private List<RecetteIngredient> recetteIngredient = new ArrayList<>();
 
-    @OneToMany(mappedBy = "recette")
+    @OneToMany(mappedBy = "recette", cascade = CascadeType.ALL)
     private List<Etape> etapes;
 
-    @OneToOne(mappedBy = "recette")
+    @OneToOne(mappedBy = "recette", cascade = CascadeType.ALL)
     private MacroNutriment macroNutriment;
 }
 
