@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @SpringBootApplication
 public class RecettesApplication implements CommandLineRunner {
@@ -25,5 +27,16 @@ public class RecettesApplication implements CommandLineRunner {
 	public void run(String... args) {
 		List<Recette> recettes = this.recettesRepositories.findAll();
 		recettes.forEach(System.out::println);
+
+
+		System.out.println("Modification de la recette");
+		Recette recette = recettes.stream().findFirst().get();
+
+		recette.setDescription("Super ma nouvelle description");
+
+		this.recettesRepositories.save(recette);
+
+		List<Recette> recettesModifiees = this.recettesRepositories.findAll();
+		recettesModifiees.forEach(System.out::println);
 	}
 }
